@@ -1,31 +1,33 @@
 import java.util.Scanner;
-public class Main{
+public class Main {
     static void main() {
         Scanner entrada = new Scanner(System.in);
-        char[] gabarito = new char[8];
-        int aprovados = 0;
-        for (int i = 0; i < 8; i++) {
-            gabarito[i] = entrada.next().charAt(0);
-        }
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Digite o número do aluno:");
-            int numeroAluno = entrada.nextInt();
-            int nota = 0;
-            System.out.println("Digite as 8 respostas do aluno:");
-            for (int j = 0; j < 8; j++) {
-                char resposta = entrada.next().charAt(0);
-                if (resposta == gabarito[j]) {
-                    nota++;
-                }
-            }
+        String[] meses = {
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        };
 
-            System.out.println("Aluno " + numeroAluno + " - Nota: " + nota);
+        double[] temperaturas = new double[12];
+        for (int i = 0; i < 12; i++) {
+            System.out.println("Digite a temperatura média de " + meses[i] + ":");
+            temperaturas[i] = entrada.nextDouble();
+        }
+        double maiorTemp = temperaturas[0];
+        int posMaior = 0;
 
-            if (nota >= 6) {
-                aprovados++;
+        double menorTemp = temperaturas[0];
+        int posMenor = 0;
+        for (int i = 1; i < 12; i++) {
+            if (temperaturas[i] > maiorTemp) {
+                maiorTemp = temperaturas[i];
+                posMaior = i;
+            }
+            if (temperaturas[i] < menorTemp) {
+                menorTemp = temperaturas[i];
+                posMenor = i;
             }
         }
-        double porcentagem = (aprovados / 10.0) * 100;
-        System.out.println("Porcentagem de aprovação: " + porcentagem + "%");
+        System.out.println("\nMaior temperatura: " + maiorTemp + "°C em " + meses[posMaior]);
+        System.out.println("Menor temperatura: " + menorTemp + "°C em " + meses[posMenor]);
     }
 }
