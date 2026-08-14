@@ -2,49 +2,31 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        int entradaN = entrada.nextInt();
-        int entradaM = entrada.nextInt();
-        int[] x = new int[entradaN];
-        int[] y = new int[entradaM];
-        for (int i = 0; i < entradaN; i++) {
-            System.out.println("Números do Vetor X");
-            x[i] = entrada.nextInt();
-        }
-        for (int i = 0; i < entradaM; i++) {
-            System.out.println("Números do Vetor Y");
-            y[i] = entrada.nextInt();
-        }
-
-        int[] z = new int[entradaM + entradaN];
-        int posicao = 0;
-        for (int i = 0; i < entradaN; i++) {
-            boolean repetido = false;
-            for (int j = 0; j < posicao; j++) {
-                if (z[j] ==  x[i]){
-                    repetido = true;
+        int idade = entrada.nextInt();
+        int maiorIdade = idade;
+        int menorIdade = idade;
+        int contIdade = 0;
+        while(idade != -1){
+            String sexo = entrada.next();
+            String corOlho = entrada.next();
+            String corCabelo = entrada.next();
+            if (maiorIdade < idade){
+                maiorIdade = idade;
+            }if (menorIdade > idade){
+                menorIdade = idade;
+            }
+            if(sexo.equalsIgnoreCase("feminino")){
+                if (idade >= 18 && idade <= 35){
+                    if (corOlho.equalsIgnoreCase("verde") && corCabelo.equalsIgnoreCase("loiro")){
+                        contIdade ++;
+                    }
                 }
             }
-            if (repetido == false){
-                z[posicao] = x[i];
-                posicao++;
-            }
+            System.out.println("Digite a idade do próximo habitante (ou -1 para sair):");
+            idade = entrada.nextInt();
         }
-        for (int i = 0; i < entradaM; i++) {
-            boolean repetido = false;
-            for (int j = 0; j < posicao; j++) {
-                if (z[j] ==  y[i]){
-                    repetido = true;
-                }
-            }
-            if (repetido == false){
-                z[posicao] = y[i];
-                posicao++;
-            }
-        }
-
-        System.out.println("Vetor União Z:");
-        for (int i = 0; i < posicao; i++) {
-            System.out.print(z[i] + " ");
-        }
+        System.out.println("A maior idade registrada foi: "+maiorIdade);
+        System.out.println("A menor idade registrada foi: "+menorIdade);
+        System.out.println("A quantidade de pessoas entre loiras e de olhos verdes entre 18 e 35 anos foi de: "+contIdade);
     }
 }
