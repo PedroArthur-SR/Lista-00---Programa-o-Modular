@@ -1,24 +1,50 @@
 import java.util.Scanner;
 public class Main{
-    static void main() {
-        Scanner entradaMatricula = new Scanner(System.in);
-        int numMatricula = entradaMatricula.nextInt();
-        int [] programacao = new int[numMatricula];
-        int [] calculo = new int[numMatricula];
-        for (int i = 0; i < numMatricula; i++) {
-            System.out.println("Matrícula dos alunos cursando Programação Modular: ");
-            programacao[i] = entradaMatricula.nextInt();
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        int entradaN = entrada.nextInt();
+        int entradaM = entrada.nextInt();
+        int[] x = new int[entradaN];
+        int[] y = new int[entradaM];
+        for (int i = 0; i < entradaN; i++) {
+            System.out.println("Números do Vetor X");
+            x[i] = entrada.nextInt();
         }
-        for (int i = 0; i < numMatricula; i++) {
-            System.out.println("Matrícula dos alunos cursando cálculo :");
-            calculo[i] = entradaMatricula.nextInt();
+        for (int i = 0; i < entradaM; i++) {
+            System.out.println("Números do Vetor Y");
+            y[i] = entrada.nextInt();
         }
-        for (int i = 0; i < numMatricula; i++) {
-            for (int j = 0; j < numMatricula; j++) {
-                if(calculo[j] == programacao[i]){
-                    System.out.println("Alunos que fazem as duas matérias: "+calculo[j]);
+
+        int[] z = new int[entradaM + entradaN];
+        int posicao = 0;
+        for (int i = 0; i < entradaN; i++) {
+            boolean repetido = false;
+            for (int j = 0; j < posicao; j++) {
+                if (z[j] ==  x[i]){
+                    repetido = true;
                 }
             }
+            if (repetido == false){
+                z[posicao] = x[i];
+                posicao++;
+            }
+        }
+        for (int i = 0; i < entradaM; i++) {
+            boolean repetido = false;
+            for (int j = 0; j < posicao; j++) {
+                if (z[j] ==  y[i]){
+                    repetido = true;
+                }
+            }
+            if (repetido == false){
+                z[posicao] = y[i];
+                posicao++;
+            }
+        }
+
+        System.out.println("Vetor União Z:");
+        for (int i = 0; i < posicao; i++) {
+            System.out.print(z[i] + " ");
         }
     }
 }
