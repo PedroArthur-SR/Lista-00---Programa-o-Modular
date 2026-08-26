@@ -2,36 +2,24 @@ import java.util.Scanner;
 public class Main {
     static void main() {
         Scanner entrada = new Scanner(System.in);
-        String[] meses = {
-                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        char[] equipes = {
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'
         };
-        double[][] matriz = new double[12][4];
-        double totalAno = 0;
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
-                matriz[i][j] = entrada.nextDouble();
-            }
-        }
-        System.out.println("-------- TOTAL POR MÊS ---------");
-        for (int i = 0; i < matriz.length; i++) {
-            double somaMes = 0;
+        while (equipes.length > 1) {
+            char[] vencedores = new char[equipes.length / 2];
+            for (int i = 0; i < equipes.length; i += 2) {
+                int M = entrada.nextInt();
+                int N = entrada.nextInt();
+                int indiceVencedor = i / 2;
 
-            for (int j = 0; j < matriz[i].length; j++) {
-                somaMes += matriz[i][j];
-                totalAno += matriz[i][j];
+                if (M > N) {
+                    vencedores[indiceVencedor] = equipes[i];
+                } else {
+                    vencedores[indiceVencedor] = equipes[i + 1];
+                }
             }
-            System.out.println("A soma total do mês "+meses[i]+" foi de R$"+somaMes );
+            equipes = vencedores;
         }
-        System.out.println("\n-------- TOTAL POR SEMANA NO ANO ---------");
-        for (int j = 0; j < 4; j++){
-            double totalSemana = 0;
-            for (int i = 0; i < 12; i++) {
-                totalSemana += matriz[i][j];
-            }
-            System.out.println("Total vendido na semana "+(j + 1)+" no ano: R$"+String.format("%.2f", totalSemana));
-        }
-        System.out.println("\n--------TOTAL ANO---------");
-        System.out.println("O total vendido no ano foi de R$"+totalAno);
+        System.out.println(equipes[0]);
     }
 }
